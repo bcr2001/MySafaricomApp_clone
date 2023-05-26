@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MyHomeRoute extends StatefulWidget {
@@ -49,10 +50,9 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
 
   // takes the pageViewElements and puts them in a pageView
   Widget pageViewConstructor({required List<String> pageViewElements}) {
-    return Column(
-      children: [
-        // pageView Builder
-        Container(
+    return Column(children: [
+      // pageView Builder
+      Container(
           color: Colors.blue,
           width: 180,
           height: 160,
@@ -66,19 +66,19 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
                   fit: BoxFit.fill,
                 );
               })),
-        //smoothPageIndicator
-        Padding(padding: const EdgeInsets.only(top: 5, bottom: 5),child:
-        SmoothPageIndicator(
-          controller: _pageController, 
-          count: _pageCount,
-          effect:  const WormEffect(
-            dotColor:  Color(0xFF2E313E),
-            activeDotColor: Color(0xFFFF0000),
-            dotHeight: 8,
-            dotWidth: 8
-          ),
+      //smoothPageIndicator
+      Padding(
+          padding: const EdgeInsets.only(top: 5, bottom: 5),
+          child: SmoothPageIndicator(
+            controller: _pageController,
+            count: _pageCount,
+            effect: const WormEffect(
+                dotColor: Color(0xFF2E313E),
+                activeDotColor: Color(0xFFFF0000),
+                dotHeight: 7,
+                dotWidth: 7),
           ))
-      ]);
+    ]);
   }
 
   // builds buttons for the services safaricom offers
@@ -125,6 +125,21 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
                 ))));
   }
 
+  // hot deals SingleChildScrollView widget
+  Widget hotDealsConstructor({required double hotDealHeight, required double hotDealWidth}) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(padding:const EdgeInsets.only(left: 5) ,child: Row(
+        children: [
+          Image.asset("assets/images/saf_components/hot_deal_1.png", fit: BoxFit.contain,height: hotDealHeight,width: hotDealWidth,),
+          Image.asset("assets/images/saf_components/hot_deal_2.png", fit: BoxFit.contain,height: hotDealHeight,width: hotDealWidth,),
+          Image.asset("assets/images/saf_components/hot_deal_3.png", fit: BoxFit.contain,height: hotDealHeight,width: hotDealWidth,),
+          Image.asset("assets/images/saf_components/hot_deal_4.png", fit: BoxFit.contain,height: hotDealHeight,width: hotDealWidth,),
+        ],
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -148,19 +163,17 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
                     padding: EdgeInsets.only(bottom: 10),
                     child: Text("Good Morning"),
                   ),
-                  Container(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
-                      onPressed: () {
-                        print("Button Was pressed");
-                      },
-                      child: const Text(
-                        "View My Balance",
-                        style:
-                            TextStyle(color: Color(0xFF0AE500), fontSize: 15),
-                      ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                    onPressed: () {
+                      print("Button Was pressed");
+                    },
+                    child: const Text(
+                      "View My Balance",
+                      style:
+                          TextStyle(color: Color(0xFF0AE500), fontSize: 15),
                     ),
                   )
                 ],
@@ -275,7 +288,11 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
               )),
 
           // hot deals
+          const Padding(padding: EdgeInsets.only(bottom: 10,left: 15,top: 10), child: Text("Hot Deals",style: TextStyle(
+            fontSize: 16
+          ),),),
 
+          hotDealsConstructor(hotDealHeight: 100, hotDealWidth: 210)
           // For you
         ]))
       ],

@@ -123,7 +123,7 @@ class _MainAppHandler extends State<MyMainApp> {
               ? ThemeMode.light
               : ThemeMode.system,
       home: Scaffold(
-        body: routesComponents[_currentIndex],
+        body: MyHomeRoute(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Padding(
             padding: const EdgeInsets.only(top: 30),
@@ -201,15 +201,15 @@ class _MainAppHandler extends State<MyMainApp> {
 
 Widget routeComponentConstructor(
     {String appBarName = "", required bool isHomePage}) {
-  if (isHomePage == true) {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          actions: [],
-          floating: true,
+          title: isHomePage ? const Text(""): Text(appBarName),
+          centerTitle: isHomePage ? false: true,
+          floating: isHomePage ? true: false,
           pinned: true,
-          expandedHeight: 180,
-          flexibleSpace: FlexibleSpaceBar(
+          expandedHeight: isHomePage ? 180: null,
+          flexibleSpace: isHomePage? FlexibleSpaceBar(
             title: const Text("Rotich", style: TextStyle(fontSize: 18),),
             centerTitle: true,
             background: Container(
@@ -239,22 +239,10 @@ Widget routeComponentConstructor(
                 ],
               ),
             ),
-          ),
+          ): null,
         ),
       ],
     );
-  } else {
-    return SafeArea(
-        child: CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          backgroundColor: Color(0xFF2E313),
-          title: Text(appBarName),
-          centerTitle: true,
-        )
-      ],
-    ));
-  }
 }
 
 

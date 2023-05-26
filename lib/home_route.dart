@@ -44,24 +44,41 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
     "assets/images/saf_components/slide_get_extra.png",
     "assets/images/saf_components/slide_get_maps.png",
     "assets/images/saf_components/slide_power_hour.png",
-    "slide_bonga.png"
+    "assets/images/saf_components/slide_bonga.png",
   ];
 
   // takes the pageViewElements and puts them in a pageView
-  Widget pageViewConstructor(
-      {required List<String> pageViewElements,
-      required height,
-      required width}) {
-    return PageView.builder(
-        controller: _pageController,
-        itemCount: pageViewElements.length,
-        itemBuilder: (context, index) {
-          return Image.asset(
-            pageViewElements[index],
-            height: height,
-            width: width,
-          );
-        });
+  Widget pageViewConstructor({required List<String> pageViewElements}) {
+    return Column(
+      children: [
+        // pageView Builder
+        Container(
+          color: Colors.blue,
+          width: 180,
+          height: 160,
+          child: PageView.builder(
+              controller: _pageController,
+              itemCount: pageViewElements.length,
+              itemBuilder: (context, index) {
+                return Image.asset(
+                  pageViewElements[index],
+                  height: 300,
+                  fit: BoxFit.fill,
+                );
+              })),
+        //smoothPageIndicator
+        Padding(padding: const EdgeInsets.only(top: 5, bottom: 5),child:
+        SmoothPageIndicator(
+          controller: _pageController, 
+          count: _pageCount,
+          effect:  const WormEffect(
+            dotColor:  Color(0xFF2E313E),
+            activeDotColor: Color(0xFFFF0000),
+            dotHeight: 8,
+            dotWidth: 8
+          ),
+          ))
+      ]);
   }
 
   // builds buttons for the services safaricom offers
@@ -71,41 +88,41 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
       required double imageHeight,
       required double imageWidth}) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      child:ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))),
-        onPressed: () {},
-        child: SizedBox(
-            height: 85,
-            width: 145,
-            
+        margin: const EdgeInsets.only(bottom: 10),
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6))),
+            onPressed: () {},
+            child: SizedBox(
+                height: 80,
+                width: 145,
 
-            // row contains the image(left) and service name(right)
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // service Image
-                Image.asset(
-                  "assets/images/saf_icons/$serviceImage",
-                  fit: BoxFit.contain,
-                  height: imageHeight,
-                  width: imageWidth,
-                ),
+                // row contains the image(left) and service name(right)
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // service Image
+                    Image.asset(
+                      "assets/images/saf_icons/$serviceImage",
+                      fit: BoxFit.contain,
+                      height: imageHeight,
+                      width: imageWidth,
+                    ),
 
-                // service Name
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    serviceName,
-                    style:
-                        const TextStyle(fontSize: 14, color: Color(0xFFF5F3F0),
-                        letterSpacing: 1),
-                  ),
-                )
-              ],
-            ))));
+                    // service Name
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        serviceName,
+                        style: const TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFFF5F3F0),
+                            letterSpacing: 1),
+                      ),
+                    )
+                  ],
+                ))));
   }
 
   @override
@@ -167,6 +184,10 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          // pageView
+                          pageViewConstructor(
+                              pageViewElements: pageViewElemets),
+
                           // data and calls service
                           serviceButtonBuilder(
                               serviceName: "Data, Calls,\nSMS &\nAirtime",
@@ -181,11 +202,19 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
                               imageHeight: 30,
                               imageWidth: 30),
 
-                          // tunukiwa offers 
-                          serviceButtonBuilder(serviceName: "Tunukiwa\nOffers", serviceImage: "tunukiwa_offers.png", imageHeight: 30, imageWidth: 30),
+                          // tunukiwa offers
+                          serviceButtonBuilder(
+                              serviceName: "Tunukiwa\nOffers",
+                              serviceImage: "tunukiwa_offers.png",
+                              imageHeight: 30,
+                              imageWidth: 30),
 
                           // bonga reward
-                          serviceButtonBuilder(serviceName: "Bonga\nRewards", serviceImage: "bonga_rewards.png", imageHeight: 35, imageWidth: 35)
+                          serviceButtonBuilder(
+                              serviceName: "Bonga\nRewards",
+                              serviceImage: "bonga_rewards.png",
+                              imageHeight: 35,
+                              imageWidth: 35)
                         ],
                       )
                     ],

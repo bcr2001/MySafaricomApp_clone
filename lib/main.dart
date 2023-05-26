@@ -98,10 +98,10 @@ class _MainAppHandler extends State<MyMainApp> {
 
   // this list containts the structure for each route
   List routesComponents = [
-    routeComponentConstructor(isHomePage: true),
-    routeComponentConstructor(isHomePage: false, appBarName: "M-PESA"),
-    routeComponentConstructor(isHomePage: false, appBarName: "Discover"),
-    routeComponentConstructor(isHomePage: false, appBarName: "Account"),
+    MyHomeRoute(),
+    const Center(child: Text("M-PESA")),
+    const Center(child: Text("Discover")),
+    const Center(child: Text("Account")),
   ];
 
   @override
@@ -123,7 +123,7 @@ class _MainAppHandler extends State<MyMainApp> {
               ? ThemeMode.light
               : ThemeMode.system,
       home: Scaffold(
-        body: MyHomeRoute(),
+        body: routesComponents[_currentIndex],
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Padding(
             padding: const EdgeInsets.only(top: 30),
@@ -198,56 +198,6 @@ class _MainAppHandler extends State<MyMainApp> {
     );
   }
 }
-
-Widget routeComponentConstructor(
-    {String appBarName = "", required bool isHomePage}) {
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          title: isHomePage ? const Text(""): Text(appBarName),
-          centerTitle: isHomePage ? false: true,
-          floating: isHomePage ? true: false,
-          pinned: true,
-          expandedHeight: isHomePage ? 180: null,
-          flexibleSpace: isHomePage? FlexibleSpaceBar(
-            title: const Text("Rotich", style: TextStyle(fontSize: 18),),
-            centerTitle: true,
-            background: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Text("Good Morning"),
-                  ),
-                  Container(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
-                        )
-                      ),
-                      onPressed: () {
-                        print("Button Was pressed");
-                      },
-                      child: const Text(
-                        "View My Balance",
-                        style: TextStyle(color: Color(0xFF0AE500),fontSize: 15),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ): null,
-        ),
-      ],
-    );
-}
-
-
-
-
 
 
 

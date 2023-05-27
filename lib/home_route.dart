@@ -14,30 +14,21 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
   // handles the page change of the pageview
   PageController _pageController = PageController();
 
-  // number of page view widgets
-  final int _pageCount = 4;
+  // first widget in the page view
+  double _currentPage = 0;
 
-  // calls the _scheduledPageSwitch when the app is first initialized
-  @override
   void initState() {
     super.initState();
-    _scheduledPageSwitch();
-  }
-
-  // after a given amount of time, _moveToNextPage is
-  // called and _scheduledPageSwitch is recursively called
-  void _scheduledPageSwitch() {
-    Future.delayed(const Duration(seconds: 2), () {
-      _moveToNextPage();
-      _scheduledPageSwitch();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page!;
+      });
     });
   }
 
-  // handles the automatic movement of the page view
-  void _moveToNextPage() {
-    int nextPage = (_pageController.page!.toInt() + 1) % _pageCount;
-    _pageController.animateToPage(nextPage,
-        duration: const Duration(milliseconds: 800), curve: Curves.easeInOut);
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 
   // list of widgets that will go inside the page view
@@ -53,7 +44,6 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
     return Column(children: [
       // pageView Builder
       Container(
-          color: Colors.blue,
           width: 180,
           height: 160,
           child: PageView.builder(
@@ -71,7 +61,7 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
           padding: const EdgeInsets.only(top: 5, bottom: 5),
           child: SmoothPageIndicator(
             controller: _pageController,
-            count: _pageCount,
+            count: 4,
             effect: const WormEffect(
                 dotColor: Color(0xFF2E313E),
                 activeDotColor: Color(0xFFFF0000),
@@ -126,18 +116,41 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
   }
 
   // hot deals SingleChildScrollView widget
-  Widget hotDealsConstructor({required double hotDealHeight, required double hotDealWidth}) {
+  Widget hotDealsConstructor(
+      {required double hotDealHeight, required double hotDealWidth}) {
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Padding(padding:const EdgeInsets.only(left: 5) ,child: Row(
-        children: [
-          Image.asset("assets/images/saf_components/hot_deal_1.png", fit: BoxFit.contain,height: hotDealHeight,width: hotDealWidth,),
-          Image.asset("assets/images/saf_components/hot_deal_2.png", fit: BoxFit.contain,height: hotDealHeight,width: hotDealWidth,),
-          Image.asset("assets/images/saf_components/hot_deal_3.png", fit: BoxFit.contain,height: hotDealHeight,width: hotDealWidth,),
-          Image.asset("assets/images/saf_components/hot_deal_4.png", fit: BoxFit.contain,height: hotDealHeight,width: hotDealWidth,),
-        ],
-      ),
-    ));
+        scrollDirection: Axis.horizontal,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/images/saf_components/hot_deal_1.png",
+                fit: BoxFit.contain,
+                height: hotDealHeight,
+                width: hotDealWidth,
+              ),
+              Image.asset(
+                "assets/images/saf_components/hot_deal_2.png",
+                fit: BoxFit.contain,
+                height: hotDealHeight,
+                width: hotDealWidth,
+              ),
+              Image.asset(
+                "assets/images/saf_components/hot_deal_3.png",
+                fit: BoxFit.contain,
+                height: hotDealHeight,
+                width: hotDealWidth,
+              ),
+              Image.asset(
+                "assets/images/saf_components/hot_deal_4.png",
+                fit: BoxFit.contain,
+                height: hotDealHeight,
+                width: hotDealWidth,
+              ),
+            ],
+          ),
+        ));
   }
 
   @override
@@ -172,8 +185,7 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
                     },
                     child: const Text(
                       "View My Balance",
-                      style:
-                          TextStyle(color: Color(0xFF0AE500), fontSize: 15),
+                      style: TextStyle(color: Color(0xFF0AE500), fontSize: 15),
                     ),
                   )
                 ],
@@ -288,9 +300,13 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
               )),
 
           // hot deals
-          const Padding(padding: EdgeInsets.only(bottom: 10,left: 15,top: 10), child: Text("Hot Deals",style: TextStyle(
-            fontSize: 16
-          ),),),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 10, left: 15, top: 10),
+            child: Text(
+              "Hot Deals",
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
 
           hotDealsConstructor(hotDealHeight: 100, hotDealWidth: 210)
           // For you

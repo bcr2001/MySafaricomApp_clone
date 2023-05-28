@@ -40,7 +40,7 @@ showPopUpDialog(context) {
       context: context,
       builder: (BuildContext context) {
         return LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
+            builder: (BuildContext context, BoxConstraints constraints) {
           return AlertDialog(
             title: const Text(
               "Logout",

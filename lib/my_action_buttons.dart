@@ -8,10 +8,21 @@ Widget actionButtons(context) {
     mainAxisSize: MainAxisSize.min,
     children: [
       // search icon
-      IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+      IconButton(
+          onPressed: () {
+            print("search clicked");
+          },
+          icon: const Icon(Icons.search)),
 
       // notification icon
-      IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
+      IconButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NotificationPage()));
+          },
+          icon: const Icon(Icons.notifications)),
 
       // pop up menu button
       PopupMenuButton(onSelected: (value) {
@@ -84,4 +95,59 @@ showPopUpDialog(context) {
           );
         });
       });
+}
+
+// notification icon
+
+class NotificationPage extends StatelessWidget {
+  const NotificationPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+        length: 2,
+        initialIndex: 0,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text("Notification"),
+            centerTitle: true,
+            bottom: const TabBar(
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorColor: Color(0xFF0AE500),
+              labelColor: Color(0xFF0AE500),
+              tabs: [
+                Tab(child: Text("NOTIFICATIONs")),
+                Tab(child: Text("REMINDERS")),
+              ],
+            ),
+          ),
+          body: TabBarView(children: [
+            Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                      "assets/images/saf_components/center_notification.png"),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 10),
+                    child: Text("All caught up!", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+                  ),
+                  const Text("Notifications will appear here"),
+                ],
+              ),
+            Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                      "assets/images/saf_components/center_reminder.png"),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 10),
+                    child: Text("No new Reminders", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+                  ),
+                  const Text("New reminders will appear here"),
+                ],
+              ),
+            
+          ]),
+        ));
+  }
 }

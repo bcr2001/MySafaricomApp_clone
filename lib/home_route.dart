@@ -74,7 +74,7 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
           width: containerWidth,
           height: containerHeight,
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(10),
               child: PageView.builder(
                   controller: currentPageController,
                   itemCount: pageViewElements.length,
@@ -190,12 +190,12 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          backgroundColor: Colors.black,
           actions: [
             Builder(builder: (BuildContext context) {
               return actionButtons(context);
             })
           ],
-          floating: true,
           pinned: true,
           expandedHeight: 180,
           flexibleSpace: FlexibleSpaceBar(

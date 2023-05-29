@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_route.dart';
 import 'package:flutter/services.dart';
+import 'mpesa_route.dart';
 
 void main() {
   runApp(const MyMainApp());
@@ -23,7 +24,8 @@ class _MainAppHandler extends State<MyMainApp> {
   // this method handles change of the current index
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.light);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -128,8 +130,8 @@ class _MyMainHomeApp extends State<MyMainHomeApp> {
 
   // this list containts the structure for each route
   List routesComponents = [
+    MpesaRoute(),
     MyHomeRoute(),
-    const Center(child: Text("M-PESA")),
     const Center(child: Text("Discover")),
     const Center(child: Text("Account")),
   ];

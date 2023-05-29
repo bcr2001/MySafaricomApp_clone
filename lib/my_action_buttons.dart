@@ -22,7 +22,7 @@ Widget actionButtons(context) {
                 MaterialPageRoute(
                     builder: (context) => const NotificationPage()));
           },
-          icon: const Icon(Icons.notifications)),
+          icon: const Icon(Icons.notifications_outlined)),
 
       // pop up menu button
       PopupMenuButton(onSelected: (value) {

@@ -27,6 +27,8 @@ class MyMpesaBody extends StatefulWidget {
 
 class _MpesaBodyHandler extends State<MyMpesaBody> {
 
+
+
   // mpesa route services constructor
   Widget _mpesaServices(
       {required String buttonImage,
@@ -35,28 +37,27 @@ class _MpesaBodyHandler extends State<MyMpesaBody> {
     return GestureDetector(
       onTap: onButtonTap,
       child: Container(
-        padding: const EdgeInsets.all(5),
-        height: 55,
+        margin: const EdgeInsets.all(5),
         width: 55,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Color(0xFF242424),
+        decoration: BoxDecoration(
+            color: const Color(0xFF242424),
             borderRadius: BorderRadius.circular(5)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("assets/images/saf_icons/$buttonImage",
-                  height: 30, width: 30),
-              Padding(
-                padding: const EdgeInsets.all(4),
-                child: Text(buttonName,
-                 textAlign: TextAlign.center,style: const TextStyle(
-                  fontSize: 15,
-                  color: Colors.white
-                ),),
-              )
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // top icon
+            Image.asset("assets/images/saf_icons/$buttonImage",
+                height: 30, width: 30),
+            // bottom button name
+            Padding(
+              padding: const EdgeInsets.all(3),
+              child: Text(
+                buttonName,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 15, color: Colors.white),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -64,73 +65,129 @@ class _MpesaBodyHandler extends State<MyMpesaBody> {
 
   // Elevated Button constructor
   Widget _elevatedButton(
-      {required String buttonName, required VoidCallback onPressedFucntion, required bool isButtonImage, String buttonImage = ""}) {
+      {required String buttonName,
+      required VoidCallback onPressedFunction,
+      required bool isButtonImage,
+      String buttonImage = "",
+      Color imageColor = Colors.red}) {
     return ElevatedButton(
-        onPressed: onPressedFucntion,
+        onPressed: onPressedFunction,
         child: SizedBox(
-          width: 400,
-          height: 50,
-          child: isButtonImage? Row(
-            children: [
-              Image.asset(buttonImage),
-              Padding(
-                padding: const EdgeInsets.only(top:10),
-                child:Text(
-                  buttonName,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Color(0xFF54C64F), fontSize: 18),
-                ),
-              ),
-            ],
-          ): Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
+            width: double.infinity,
+            height: 50,
+            // if the isButtonImage = true then an image is rendered
+            // otherwise a Text widget is rendered
+            child: isButtonImage
+                ? Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Image.asset(
+                      "assets/images/saf_icons/$buttonImage",
+                      fit: BoxFit.contain,
+                      color: imageColor,
+                      width: 30,
+                      height: 30,
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
                       buttonName,
                       textAlign: TextAlign.center,
-                      style:
-                          const TextStyle(color: Color(0xFF54C64F), fontSize: 18),
+                      style: const TextStyle(
+                          letterSpacing: 0.8,
+                          color: Color(0xFF54C64F),
+                          fontSize: 18),
                     ),
-          )
-        ));
+                  )));
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-      child:
-        GridView.count(
-          crossAxisCount: 3,
-          children: [
-            // send money button
-            _mpesaServices(buttonImage: "send_money.png", buttonName: "Send\nMoney", onButtonTap: () => print("sending money")),
+      child: Column(
+        children: [
+          // show balance elevated button
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: _elevatedButton(
+                buttonName: "Show Balance",
+                onPressedFunction: () => print("showing balance"),
+                isButtonImage: false),
+          ),
+          // mpesa go
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+              )
+            ),
+            onPressed: ()=>print("Mpesa Go"),
+            child: SizedBox(
+              width: double.infinity,
+              child: Center(
+                child: Image.asset("assets/images/saf_components/mpesa_go.png",
+                    fit: BoxFit.contain, height: 110,),
+              ),
+            ),
+          ),
 
-            // withdraw cash button
-            _mpesaServices(buttonImage: "withdraw_cash.png", buttonName: "Withdraw\nCash", onButtonTap: () => print("withdrawing cash")),
+          // Mpesa statement Button
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: ElevatedButton(
+              onPressed: ()=>print("Mpesa Go"),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                margin: const EdgeInsets.only(top: 10),
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Image.asset("assets/images/saf_components/mpesa_statement.png",
+                      fit: BoxFit.contain, 
+                      height: 20),
+                ),
+              ),
+            ),
+          ),
 
-            // buy airtime button
-            _mpesaServices(buttonImage: "buy_airtime.png", buttonName: "Buy Airtime", onButtonTap: () => print("buying Airtime")),
+          // Scan QR code button
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 255, 17, 0)
+            ),
+            onPressed: ()=> print("scanning QR code"),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10)
+              ),
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:  [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: Image.asset(
+                      "assets/images/saf_components/scan_qr2.png",
+                      fit: BoxFit.contain,
+                      height: 15,
+                    ),
+                  ),
+                  const Text("SCAN QR", 
+                  style:TextStyle(
+                    color: Colors.black,
+                    fontSize: 19,
+                    letterSpacing: 1.5
 
-            // lipa na mpesa button
-            _mpesaServices(buttonImage: "lipa_na_mpesa.png", buttonName: "Lipa na\nM-PESA", onButtonTap: () => print("lipa na mpesa")),
-
-            // bill manager button
-            _mpesaServices(buttonImage: "bill_manager.png", buttonName: "Bill\nManager", onButtonTap: () => print("bill manager")),
-
-            // loans and savings button
-            _mpesaServices(buttonImage: "loans_savings.png", buttonName: "Loans &\nSavings", onButtonTap: () => print("loans and savings")),
-
-            // fuliza m-pesa button
-            _mpesaServices(buttonImage: "fuliza_mpesa.png", buttonName: "Fuliza\nM-PESA", onButtonTap: () => print("fuliza")),
-
-            // mpesa global button
-            _mpesaServices(buttonImage: "mpesa_global.png", buttonName: "M-PESA\nGlobal", onButtonTap: () => print("global")),
-
-            //Account button
-            _mpesaServices(buttonImage: "account.png", buttonName: "Account", onButtonTap: () => print("accounting")),
-
-          ],),
+                  ) ,),
+                ],
+              )
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

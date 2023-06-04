@@ -235,7 +235,7 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
           Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   // first row that contains the automatic page view
                   // and 5 service buttons

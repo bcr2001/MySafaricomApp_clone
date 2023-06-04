@@ -74,7 +74,7 @@ class _MpesaBodyHandler extends State<MyMpesaBody> {
         onPressed: onPressedFunction,
         child: SizedBox(
             width: double.infinity,
-            height: 50,
+            height: 40,
             // if the isButtonImage = true then an image is rendered
             // otherwise a Text widget is rendered
             child: isButtonImage
@@ -88,17 +88,17 @@ class _MpesaBodyHandler extends State<MyMpesaBody> {
                       height: 30,
                     ),
                   )
-                : Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      buttonName,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          letterSpacing: 0.8,
-                          color: Color(0xFF54C64F),
-                          fontSize: 18),
-                    ),
-                  )));
+                : Center(
+                  child: Text(
+                        buttonName,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            letterSpacing: 0.8,
+                            color: Color(0xFF54C64F),
+                            fontSize: 18),
+                      ),
+                ),
+                  ));
   }
 
   @override
@@ -115,19 +115,59 @@ class _MpesaBodyHandler extends State<MyMpesaBody> {
                 onPressedFunction: () => print("showing balance"),
                 isButtonImage: false),
           ),
-          // mpesa go
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
-              )
+
+          // Mpesa Route Services Grid View
+          Flexible(
+            child: GridView.count(
+              crossAxisCount: 3,
+              shrinkWrap: true,
+              children: [
+                // send money service 1
+                _mpesaServices(buttonImage: "send_money.png", buttonName: "Send\nMoney", onButtonTap:()=> print("sending money")),
+
+                // withdraw cash service 2
+                _mpesaServices(buttonImage: "withdraw_cash.png", buttonName: "Withdraw\nCash", onButtonTap:()=> print("withdrawing cash")),
+
+                // buy airtime service 3
+                _mpesaServices(buttonImage: "buy_airtime.png", buttonName: "Buy Airtime", onButtonTap:()=> print("buying airtime")),
+
+                //  lipa na mpesa service 4
+                _mpesaServices(buttonImage: "lipa_na_mpesa.png", buttonName: "Lipa na\nM-PESA", onButtonTap:()=> print("lipa na mpesa")),
+
+                //  bill manager service 5
+                _mpesaServices(buttonImage: "bill_manager.png", buttonName: "Bill\nManager", onButtonTap:()=> print("bill manager")),
+
+                //  loans and savings service 6
+                _mpesaServices(buttonImage: "loans_savings.png", buttonName: "Loans &\nSavings", onButtonTap:()=> print("loans and savings")),
+
+                //  fuliza mpesa service 7
+                _mpesaServices(buttonImage: "fuliza_mpesa.png", buttonName: "Fuliza\nM-PESA", onButtonTap:()=> print("fuliza mpesa")),
+
+                //  Mpesa Global service 8
+                _mpesaServices(buttonImage: "mpesa_global.png", buttonName: "M-PESA\nGlobal", onButtonTap:()=> print("mpesa global")),
+
+                //  Mpesa Global service 9
+                _mpesaServices(buttonImage: "account.png", buttonName: "Account", onButtonTap:()=> print("accounting")),
+              ],
             ),
-            onPressed: ()=>print("Mpesa Go"),
-            child: SizedBox(
-              width: double.infinity,
-              child: Center(
-                child: Image.asset("assets/images/saf_components/mpesa_go.png",
-                    fit: BoxFit.contain, height: 110,),
+          ),
+
+          // mpesa go
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)
+                )
+              ),
+              onPressed: ()=>print("Mpesa Go"),
+              child: SizedBox(
+                width: double.infinity,
+                child: Center(
+                  child: Image.asset("assets/images/saf_components/mpesa_go.png",
+                      fit: BoxFit.contain, height: 105,),
+                ),
               ),
             ),
           ),
@@ -136,7 +176,7 @@ class _MpesaBodyHandler extends State<MyMpesaBody> {
           Padding(
             padding: const EdgeInsets.only(top: 10, bottom: 10),
             child: ElevatedButton(
-              onPressed: ()=>print("Mpesa Go"),
+              onPressed: ()=>print("Mpesa Statement"),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10)

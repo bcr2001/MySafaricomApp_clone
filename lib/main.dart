@@ -129,11 +129,11 @@ class _MyMainHomeApp extends State<MyMainHomeApp> {
   }
 
   // this list containts the structure for each route
-  List routesComponents = [
-    MpesaRoute(),
+  List routesComponents = const [
     MyHomeRoute(),
-    const Center(child: Text("Discover")),
-    const Center(child: Text("Account")),
+    MpesaRoute(),
+    Center(child: Text("Discover")),
+    Center(child: Text("Account")),
   ];
 
   @override

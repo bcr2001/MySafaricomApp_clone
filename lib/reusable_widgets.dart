@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+// AppBar Title Text Style
+TextStyle titleTextStyle = const TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.w500,
+    color: Color(0xFFF5F3F0),
+    letterSpacing: 0.8);
+
+// Section Title Text Style
+TextStyle sectionTitles = const TextStyle(fontSize: 20, letterSpacing: 0.8, color: Color(0xFFF5F3F0));
+
 // the action buttons found on each bottom
 // navigation routes
 
@@ -229,12 +239,10 @@ Widget elevatedButton(
       ));
 }
 
-
-
 // PageView constructor
 Widget pageViewConstructor(
     {required currentPageController,
-    required  List<String> pageViewElements,
+    required List<String> pageViewElements,
     required double containerHeight,
     required double containerWidth}) {
   return Column(children: [

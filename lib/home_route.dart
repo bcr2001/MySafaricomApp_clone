@@ -292,21 +292,21 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
               )),
 
           // hot deals
-          const Padding(
-            padding: EdgeInsets.only(bottom: 10, left: 15, top: 10),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10, left: 15, top: 10),
             child: Text(
               "Hot Deals",
-              style: TextStyle(fontSize: 20),
+              style: sectionTitles,
             ),
           ),
           hotDealsConstructor(),
 
           // For you
-          const Padding(
-            padding: EdgeInsets.only(bottom: 5, left: 15, top: 15),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5, left: 15, top: 15),
             child: Text(
               "For You",
-              style: TextStyle(fontSize: 20),
+              style: sectionTitles,
             ),
           ),
           Padding(

@@ -8,7 +8,7 @@ class MpesaRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("M-PESA"),
+        title: Text("M-PESA", style: titleTextStyle,),
         centerTitle: true,
         actions: [actionButtons(context)],
         backgroundColor: const Color(0xFF1E1D1D),

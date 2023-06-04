@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:my_safaricom_app_clone/my_action_buttons.dart';
+import 'reusable_widgets.dart';
 
 class MpesaRoute extends StatelessWidget {
   const MpesaRoute({super.key});
@@ -27,79 +27,7 @@ class MyMpesaBody extends StatefulWidget {
 
 class _MpesaBodyHandler extends State<MyMpesaBody> {
 
-
-
-  // mpesa route services constructor
-  Widget _mpesaServices(
-      {required String buttonImage,
-      required String buttonName,
-      required VoidCallback onButtonTap}) {
-    return GestureDetector(
-      onTap: onButtonTap,
-      child: Container(
-        margin: const EdgeInsets.all(5),
-        width: 55,
-        decoration: BoxDecoration(
-            color: const Color(0xFF242424),
-            borderRadius: BorderRadius.circular(5)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // top icon
-            Image.asset("assets/images/saf_icons/$buttonImage",
-                height: 30, width: 30),
-            // bottom button name
-            Padding(
-              padding: const EdgeInsets.all(3),
-              child: Text(
-                buttonName,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 15, color: Colors.white),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  // Elevated Button constructor
-  Widget _elevatedButton(
-      {required String buttonName,
-      required VoidCallback onPressedFunction,
-      required bool isButtonImage,
-      String buttonImage = "",
-      Color imageColor = Colors.red}) {
-    return ElevatedButton(
-        onPressed: onPressedFunction,
-        child: SizedBox(
-            width: double.infinity,
-            height: 40,
-            // if the isButtonImage = true then an image is rendered
-            // otherwise a Text widget is rendered
-            child: isButtonImage
-                ? Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Image.asset(
-                      "assets/images/saf_icons/$buttonImage",
-                      fit: BoxFit.contain,
-                      color: imageColor,
-                      width: 30,
-                      height: 30,
-                    ),
-                  )
-                : Center(
-                  child: Text(
-                        buttonName,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            letterSpacing: 0.8,
-                            color: Color(0xFF54C64F),
-                            fontSize: 18),
-                      ),
-                ),
-                  ));
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +38,7 @@ class _MpesaBodyHandler extends State<MyMpesaBody> {
           // show balance elevated button
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: _elevatedButton(
+            child: elevatedButton(
                 buttonName: "Show Balance",
                 onPressedFunction: () => print("showing balance"),
                 isButtonImage: false),
@@ -123,31 +51,31 @@ class _MpesaBodyHandler extends State<MyMpesaBody> {
               shrinkWrap: true,
               children: [
                 // send money service 1
-                _mpesaServices(buttonImage: "send_money.png", buttonName: "Send\nMoney", onButtonTap:()=> print("sending money")),
+                mpesaServices(buttonImage: "send_money.png", buttonName: "Send\nMoney", onButtonTap:()=> print("sending money")),
 
                 // withdraw cash service 2
-                _mpesaServices(buttonImage: "withdraw_cash.png", buttonName: "Withdraw\nCash", onButtonTap:()=> print("withdrawing cash")),
+                mpesaServices(buttonImage: "withdraw_cash.png", buttonName: "Withdraw\nCash", onButtonTap:()=> print("withdrawing cash")),
 
                 // buy airtime service 3
-                _mpesaServices(buttonImage: "buy_airtime.png", buttonName: "Buy Airtime", onButtonTap:()=> print("buying airtime")),
+                mpesaServices(buttonImage: "buy_airtime.png", buttonName: "Buy Airtime", onButtonTap:()=> print("buying airtime")),
 
                 //  lipa na mpesa service 4
-                _mpesaServices(buttonImage: "lipa_na_mpesa.png", buttonName: "Lipa na\nM-PESA", onButtonTap:()=> print("lipa na mpesa")),
+                mpesaServices(buttonImage: "lipa_na_mpesa.png", buttonName: "Lipa na\nM-PESA", onButtonTap:()=> print("lipa na mpesa")),
 
                 //  bill manager service 5
-                _mpesaServices(buttonImage: "bill_manager.png", buttonName: "Bill\nManager", onButtonTap:()=> print("bill manager")),
+                mpesaServices(buttonImage: "bill_manager.png", buttonName: "Bill\nManager", onButtonTap:()=> print("bill manager")),
 
                 //  loans and savings service 6
-                _mpesaServices(buttonImage: "loans_savings.png", buttonName: "Loans &\nSavings", onButtonTap:()=> print("loans and savings")),
+                mpesaServices(buttonImage: "loans_savings.png", buttonName: "Loans &\nSavings", onButtonTap:()=> print("loans and savings")),
 
                 //  fuliza mpesa service 7
-                _mpesaServices(buttonImage: "fuliza_mpesa.png", buttonName: "Fuliza\nM-PESA", onButtonTap:()=> print("fuliza mpesa")),
+                mpesaServices(buttonImage: "fuliza_mpesa.png", buttonName: "Fuliza\nM-PESA", onButtonTap:()=> print("fuliza mpesa")),
 
                 //  Mpesa Global service 8
-                _mpesaServices(buttonImage: "mpesa_global.png", buttonName: "M-PESA\nGlobal", onButtonTap:()=> print("mpesa global")),
+                mpesaServices(buttonImage: "mpesa_global.png", buttonName: "M-PESA\nGlobal", onButtonTap:()=> print("mpesa global")),
 
                 //  Mpesa Global service 9
-                _mpesaServices(buttonImage: "account.png", buttonName: "Account", onButtonTap:()=> print("accounting")),
+                mpesaServices(buttonImage: "account.png", buttonName: "Account", onButtonTap:()=> print("accounting")),
               ],
             ),
           ),

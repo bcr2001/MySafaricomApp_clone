@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'my_action_buttons.dart';
+import 'reusable_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MyHomeRoute extends StatefulWidget {
@@ -60,53 +60,6 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
     "assets/images/saf_components/for_you_wifi.png",
     "assets/images/saf_components/for_you_baze.png",
   ];
-
-  // takes the pageViewElements and puts them in a pageView
-  Widget pageViewConstructor(
-      {required currentPageController,
-      required List<String> pageViewElements,
-      required double containerHeight,
-      required double containerWidth}) {
-    return Column(children: [
-      // pageView Builder
-      Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-          width: containerWidth,
-          height: containerHeight,
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: PageView.builder(
-                  controller: currentPageController,
-                  itemCount: pageViewElements.length,
-                  itemBuilder: (context, index) {
-                    return ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
-                      onPressed: () {
-                        print("${pageViewElemets[index]} was clicked");
-                      },
-                      child: Image.asset(
-                        pageViewElements[index],
-                        fit: BoxFit.fill,
-                      ),
-                    );
-                  }))),
-      //smoothPageIndicator
-      Padding(
-          padding: const EdgeInsets.only(top: 5, bottom: 5),
-          child: SmoothPageIndicator(
-            controller: currentPageController,
-            count: pageViewElemets.length,
-            effect: const WormEffect(
-                dotColor: Color(0xFF2E313E),
-                activeDotColor: Color(0xFFFF0000),
-                dotHeight: 7,
-                dotWidth: 7),
-          ))
-    ]);
-  }
 
   // builds buttons for the services safaricom offers
   Widget serviceButtonBuilder(

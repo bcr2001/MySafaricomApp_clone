@@ -9,7 +9,8 @@ TextStyle titleTextStyle = const TextStyle(
     letterSpacing: 0.8);
 
 // Section Title Text Style
-TextStyle sectionTitles = const TextStyle(fontSize: 20, letterSpacing: 0.8, color: Color(0xFFF5F3F0));
+TextStyle sectionTitles =
+    const TextStyle(fontSize: 20, letterSpacing: 0.8, color: Color(0xFFF5F3F0));
 
 // the action buttons found on each bottom
 // navigation routes
@@ -284,4 +285,37 @@ Widget pageViewConstructor(
               dotWidth: 7),
         ))
   ]);
+}
+    // list of widgets for the For You section
+  List<String> forYouPageView = [
+    "assets/images/saf_components/for_you_monthly.png",
+    "assets/images/saf_components/for_you_tips.png",
+    "assets/images/saf_components/for_you_wifi.png",
+    "assets/images/saf_components/for_you_baze.png",
+  ];
+
+// handles the hot deals creation and function operation
+Widget singleChildViewButton(
+    {required String buttonImage,
+    required VoidCallback onPressedFunction,
+    double imageHeight = 120, double
+    imageWidth = 220}) {
+  return Padding(
+    padding: const EdgeInsets.only(right: 10),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(6),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20))),
+          onPressed: onPressedFunction,
+          child: Image.asset(
+            "assets/images/saf_components/$buttonImage",
+            height: imageHeight,
+            width: imageWidth,
+            fit: BoxFit.cover,
+          )),
+    ),
+  );
 }

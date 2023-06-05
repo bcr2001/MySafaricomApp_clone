@@ -52,15 +52,6 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
     "assets/images/saf_components/slide_power_hour.png",
     "assets/images/saf_components/slide_bonga.png",
   ];
-
-  // list of widgets for the For You section
-  List<String> forYouPageView = [
-    "assets/images/saf_components/for_you_monthly.png",
-    "assets/images/saf_components/for_you_tips.png",
-    "assets/images/saf_components/for_you_wifi.png",
-    "assets/images/saf_components/for_you_baze.png",
-  ];
-
   // builds buttons for the services safaricom offers
   Widget serviceButtonBuilder(
       {required String serviceName,
@@ -113,23 +104,23 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
           padding: const EdgeInsets.only(left: 10),
           child: Row(
             children: [
-              hotDealsButton(
-                  hotDealsImage: "hot_deal_1.png",
+              singleChildViewButton(
+                  buttonImage: "hot_deal_1.png",
                   onPressedFunction: () {
                     print("hot_deal_1");
                   }),
-              hotDealsButton(
-                  hotDealsImage: "hot_deal_2.png",
+              singleChildViewButton(
+                  buttonImage: "hot_deal_2.png",
                   onPressedFunction: () {
                     print("hot_deal_2");
                   }),
-              hotDealsButton(
-                  hotDealsImage: "hot_deal_3.png",
+              singleChildViewButton(
+                  buttonImage: "hot_deal_3.png",
                   onPressedFunction: () {
                     print("hot_deal_3");
                   }),
-              hotDealsButton(
-                  hotDealsImage: "hot_deal_4.png",
+              singleChildViewButton(
+                  buttonImage: "hot_deal_4.png",
                   onPressedFunction: () {
                     print("hot_deal_4");
                   }),
@@ -321,27 +312,4 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
       ],
     );
   }
-}
-
-// handles the hot deals creation and function operation
-Widget hotDealsButton(
-    {required String hotDealsImage, required VoidCallback onPressedFunction}) {
-  return Padding(
-    padding: const EdgeInsets.only(right: 10),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(6),
-      child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20))),
-          onPressed: onPressedFunction,
-          child: Image.asset(
-            "assets/images/saf_components/$hotDealsImage",
-            height: 120,
-            width: 220,
-            fit: BoxFit.cover,
-          )),
-    ),
-  );
 }

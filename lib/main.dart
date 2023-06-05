@@ -131,9 +131,9 @@ class _MyMainHomeApp extends State<MyMainHomeApp> {
 
   // this list containts the structure for each route
   List routesComponents = const [
-    DiscoverRoute(),
     MyHomeRoute(),
     MpesaRoute(),
+    DiscoverRoute(),
     Center(child: Text("Account")),
   ];
 

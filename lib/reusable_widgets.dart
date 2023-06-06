@@ -286,20 +286,21 @@ Widget pageViewConstructor(
         ))
   ]);
 }
-    // list of widgets for the For You section
-  List<String> forYouPageView = [
-    "assets/images/saf_components/for_you_monthly.png",
-    "assets/images/saf_components/for_you_tips.png",
-    "assets/images/saf_components/for_you_wifi.png",
-    "assets/images/saf_components/for_you_baze.png",
-  ];
+
+// list of widgets for the For You section
+List<String> forYouPageView = [
+  "assets/images/saf_components/for_you_monthly.png",
+  "assets/images/saf_components/for_you_tips.png",
+  "assets/images/saf_components/for_you_wifi.png",
+  "assets/images/saf_components/for_you_baze.png",
+];
 
 // handles the hot deals creation and function operation
 Widget singleChildViewButton(
     {required String buttonImage,
     required VoidCallback onPressedFunction,
-    double imageHeight = 120, double
-    imageWidth = 220}) {
+    double imageHeight = 120,
+    double imageWidth = 220}) {
   return Padding(
     padding: const EdgeInsets.only(right: 10),
     child: ClipRRect(
@@ -317,5 +318,18 @@ Widget singleChildViewButton(
             fit: BoxFit.cover,
           )),
     ),
+  );
+}
+
+// iconImage place here function
+Widget iconImagePlaceHere({
+  required String imageName, 
+  double imageHeight = 30,
+  double imageWidth = 30}) {
+  return Image.asset(
+    "assets/images/saf_icons/$imageName",
+    fit: BoxFit.contain,
+    height: imageHeight,
+    width: imageWidth,
   );
 }

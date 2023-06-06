@@ -3,6 +3,7 @@ import 'home_route.dart';
 import 'package:flutter/services.dart';
 import 'mpesa_route.dart';
 import 'discover_route.dart';
+import 'account_route.dart';
 
 void main() {
   runApp(const MyMainApp());
@@ -131,10 +132,10 @@ class _MyMainHomeApp extends State<MyMainHomeApp> {
 
   // this list containts the structure for each route
   List routesComponents = const [
+    AccountRoute(),
     MyHomeRoute(),
     MpesaRoute(),
     DiscoverRoute(),
-    Center(child: Text("Account")),
   ];
 
   @override

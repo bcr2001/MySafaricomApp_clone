@@ -179,7 +179,7 @@ Widget mpesaServices(
       margin: const EdgeInsets.all(5),
       width: 55,
       decoration: BoxDecoration(
-          color: const Color(0xFF242424),
+          color: const Color(0xFF262937),
           borderRadius: BorderRadius.circular(5)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -322,14 +322,132 @@ Widget singleChildViewButton(
 }
 
 // iconImage place here function
-Widget iconImagePlaceHere({
-  required String imageName, 
-  double imageHeight = 30,
-  double imageWidth = 30}) {
+Widget iconImagePlaceHere(
+    {required String imageName,
+    double imageHeight = 30,
+    double imageWidth = 30}) {
   return Image.asset(
     "assets/images/saf_icons/$imageName",
     fit: BoxFit.contain,
     height: imageHeight,
     width: imageWidth,
+  );
+}
+
+// ACCOUNT ROURE FUNCTIONS
+
+// account details
+Widget detailsConstructor(
+    {required String detailName, required detailInformation}) {
+  return Column(
+    children: [
+      Text(
+        detailName,
+        style: TextStyle(color: Colors.white.withOpacity(0.6)),
+      ),
+      Text(
+        detailInformation,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+    ],
+  );
+}
+
+// Vertical line Separator
+Widget verticalLine() {
+  return Container(
+    margin: const EdgeInsets.only(left: 15),
+    width: 2.0,
+    height: 20,
+    color: Colors.grey,
+  );
+}
+
+// Quick Account Actions: action constructor
+Widget quickActionConstructor(
+    {required String actionIcon,
+    required String actionName,
+    required VoidCallback actionFunction}) {
+  return GestureDetector(
+    onTap: () => actionFunction,
+    child: Column(
+      children: [
+        // actionIcon
+        Image.asset(
+          "assets/images/saf_icons/$actionIcon",
+          fit: BoxFit.contain,
+          width: 30,
+          height: 30,
+        ),
+
+        // actionName
+        Padding(
+          padding: const EdgeInsets.only(top: 5.0),
+          child: Text(
+            actionName,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        )
+      ],
+    ),
+  );
+}
+
+// SECTION 4: ACCOUNT SETTINGS
+Widget accountSettingConstructor(
+    {required String settingImage,
+    required String settingName,
+    required VoidCallback settingsFunction}) {
+  return Padding(
+    padding: const EdgeInsets.only(top:15),
+    child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(8.0),
+          backgroundColor: const Color(0xFF262937),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8)
+          )
+        ),
+        onPressed: settingsFunction,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // row containing image and name
+              Row(
+                children: [
+                  // settings image
+                  Image.asset(
+                    "assets/images/saf_icons/$settingImage",
+                    fit: BoxFit.contain,
+                    height: 30,
+                    width: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:15.0),
+                    child: Text(
+                      settingName, 
+                      style: const TextStyle(
+                        color: Color(0xFFF5F3F0),
+                        fontSize: 16,
+                        letterSpacing: 1.5
+                      ),),
+                  )
+                ],
+              ),
+  
+              // right facing arrow image
+              Image.asset(
+                "assets/images/saf_icons/saf_next.png",
+                fit: BoxFit.contain,
+                height: 20,
+                width: 20,
+              )
+            ],
+          ),
+        )),
   );
 }

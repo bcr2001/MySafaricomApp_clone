@@ -11,7 +11,6 @@ class MpesaRoute extends StatelessWidget {
         title: Text("M-PESA", style: titleTextStyle,),
         centerTitle: true,
         actions: [actionButtons(context)],
-        backgroundColor: const Color(0xFF1E1D1D),
       ),
       body: const MyMpesaBody(),
     );

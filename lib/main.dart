@@ -31,10 +31,25 @@ class _MainAppHandler extends State<MyMainApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.green
+          ),
           useMaterial3: true,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           brightness: Brightness.light),
       darkTheme: ThemeData(
+          elevatedButtonTheme:  ElevatedButtonThemeData(
+            style: ButtonStyle(
+              elevation: MaterialStateProperty.all(0),
+              backgroundColor: MaterialStateProperty.all(
+                const Color(0xFF212121)
+              )
+            )
+          ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFF212121),
+            elevation: 0
+          ),
           useMaterial3: true,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           brightness: Brightness.dark),
@@ -132,10 +147,14 @@ class _MyMainHomeApp extends State<MyMainHomeApp> {
 
   // this list containts the structure for each route
   List routesComponents = const [
-    AccountRoute(),
+    // Home Route
     MyHomeRoute(),
+    // Mpesa Route
     MpesaRoute(),
+    // Discover Route
     DiscoverRoute(),
+    // Account Route 
+    AccountRoute(),
   ];
 
   @override
@@ -219,7 +238,7 @@ class _MyMainHomeApp extends State<MyMainHomeApp> {
                   print("modal is being displayes");
                 },
                 elevation: 0,
-                backgroundColor: const Color(0xFF252733),
+                backgroundColor:const Color(0xFF262937),
                 shape: const CircleBorder(),
                 child: Image.asset(
                   "assets/images/saf_icons/bottom_navigation_saf.png",
@@ -231,7 +250,6 @@ class _MyMainHomeApp extends State<MyMainHomeApp> {
       bottomNavigationBar: BottomAppBar(
         height: 70,
         notchMargin: 0,
-        color: const Color(0xFF252733),
         child: Row(
           // main row that holds the entire bottom navigation elements
           mainAxisSize: MainAxisSize.max,

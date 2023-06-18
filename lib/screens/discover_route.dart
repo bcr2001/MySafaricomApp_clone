@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'reusable_widgets.dart';
+import '../function_ops/reusable_widgets.dart';
 
 class DiscoverRoute extends StatelessWidget {
   const DiscoverRoute({super.key});

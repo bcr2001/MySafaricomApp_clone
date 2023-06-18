@@ -1,12 +1,11 @@
 import "package:flutter/material.dart";
-import 'reusable_widgets.dart';
+import '../function_ops/reusable_widgets.dart';
 
 class AccountRoute extends StatelessWidget {
   const AccountRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -49,8 +48,6 @@ class _AccountBodyHandler extends State<MyAccountBody> {
       margin: const EdgeInsets.only(bottom: 15),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            elevation: 0,
-            backgroundColor: const Color(0xFF262937),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
         onPressed: () {
@@ -98,7 +95,7 @@ class _AccountBodyHandler extends State<MyAccountBody> {
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: const Color(0xFF262937)),
+          color: Theme.of(context).primaryColor),
       padding: const EdgeInsets.only(top: 6.0, bottom: 20),
       child: Column(
         children: [
@@ -170,7 +167,7 @@ class _AccountBodyHandler extends State<MyAccountBody> {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          color: const Color(0xFF212121)),
+          color: Theme.of(context).primaryColor),
       width: double.infinity,
       margin: const EdgeInsets.only(top: 15),
       padding: const EdgeInsets.only(top: 10, bottom: 10),

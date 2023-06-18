@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'reusable_widgets.dart';
+import '../function_ops/reusable_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MyHomeRoute extends StatefulWidget {
@@ -148,28 +148,26 @@ class _HomeRouteHandler extends State<MyHomeRoute> {
               style: TextStyle(fontSize: 18),
             ),
             centerTitle: true,
-            background: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Text("Good Morning"),
+            background: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                 const Padding(
+                  padding:EdgeInsets.only(bottom: 10),
+                  child: Text("Good Morning",style:TextStyle(fontSize: 16),),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                  onPressed: () {
+                    print("Button Was pressed");
+                  },
+                  child: const Text(
+                    "View My Balance",
+                    style: TextStyle(color: Color(0xFF0AE500), fontSize: 15),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                    onPressed: () {
-                      print("Button Was pressed");
-                    },
-                    child: const Text(
-                      "View My Balance",
-                      style: TextStyle(color: Color(0xFF0AE500), fontSize: 15),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
         ),

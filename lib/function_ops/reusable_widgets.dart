@@ -179,7 +179,7 @@ Widget mpesaServices(
       margin: const EdgeInsets.all(5),
       width: 55,
       decoration: BoxDecoration(
-          color: const Color(0xFF262937),
+          color: const Color(0xFF212121),
           borderRadius: BorderRadius.circular(5)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -403,8 +403,6 @@ Widget accountSettingConstructor(
     child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(8.0),
-          backgroundColor: const Color(0xFF262937),
-          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8)
           )

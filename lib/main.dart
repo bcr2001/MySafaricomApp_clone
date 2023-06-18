@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'home_route.dart';
+import 'screens/home_route.dart';
 import 'package:flutter/services.dart';
-import 'mpesa_route.dart';
-import 'discover_route.dart';
-import 'account_route.dart';
+import 'screens/mpesa_route.dart';
+import 'screens/discover_route.dart';
+import 'screens/account_route.dart';
 
 void main() {
   runApp(const MyMainApp());
@@ -30,6 +30,8 @@ class _MainAppHandler extends State<MyMainApp> {
       SystemUiOverlayStyle.light);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      // theme data for light mode
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.green
@@ -37,7 +39,10 @@ class _MainAppHandler extends State<MyMainApp> {
           useMaterial3: true,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           brightness: Brightness.light),
+
+      // dark mode theme data
       darkTheme: ThemeData(
+        primaryColor: const Color(0xFF212121),
           elevatedButtonTheme:  ElevatedButtonThemeData(
             style: ButtonStyle(
               elevation: MaterialStateProperty.all(0),
@@ -50,6 +55,7 @@ class _MainAppHandler extends State<MyMainApp> {
             backgroundColor: Color(0xFF212121),
             elevation: 0
           ),
+          
           useMaterial3: true,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           brightness: Brightness.dark),
